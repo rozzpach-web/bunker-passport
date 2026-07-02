@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бункер Паспорт</title>
+    <!-- Підключаємо файл зі стилями -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Підключаємо спеціальний скрипт від Telegram, щоб застосунок міг спілкуватися з ботом -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1 class="neon-text">🚨 СЕКТОР ВИЖИВАННЯ 🚨</h1>
+            <p id="player-name">Завантаження профілю...</p>
+        </header>
+
+        <main class="cards-grid">
+            <!-- Картка 1: Професія -->
+            <div class="bext-card">
+                <div class="card-icon">💼</div>
+                <div class="card-title">Професія</div>
+                <div class="card-value" id="prof-value">Інженер</div>
+            </div>
+
+            <!-- Картка 2: Фізичне здоров'я -->
+            <div class="bext-card">
+                <div class="card-icon">🩺</div>
+                <div class="card-title">Здоров'я</div>
+                <div class="card-value" id="health-value">Повністю здоровий</div>
+            </div>
+
+            <!-- Картка 3: Рюкзак -->
+            <div class="bext-card">
+                <div class="card-icon">🎒</div>
+                <div class="card-title">Рюкзак</div>
+                <div class="card-value" id="backpack-value">Набір інструментів</div>
+            </div>
+        </main>
+
+        <footer>
+            <button class="action-btn" onclick="sendToChat()">📢 Відкрити картку в чат</button>
+        </footer>
+    </div>
+
+    <script>
+        // Ініціалізуємо Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Розгортаємо мінізастосунок на весь екран
+
+        // Беремо ім'я користувача з Телеграму і вставляємо на сторінку
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            document.getElementById('player-name').innerText = `Виживальник: @${tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name}`;
+        }
+
+        // Функція для кнопки (поки що просто закриває застосунок, пізніше навчимо відправляти дані)
+        function sendToChat() {
+            tg.close();
+        }
+    </script>
+</body>
+</html>
