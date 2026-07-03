@@ -118,7 +118,15 @@
         };
 
         function getRandomItem(array) { return array[Math.floor(Math.random() * array.length)]; }
-        function shareCharacteristic(type, value) { tg.sendData(JSON.stringify({action: "share_characteristic", type: type, value: value})); }
+        function shareCharacteristic(type, value) {
+    // Створюємо чистий об'єкт
+    const data = {
+        type: String(type),
+        value: String(value)
+    };
+    // Відправляємо
+    tg.sendData(JSON.stringify(data));
+}
 
         const container = document.getElementById('passport');
         Object.keys(db).forEach(category => {
